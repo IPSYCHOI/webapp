@@ -21,6 +21,12 @@ app.post("/send",(req,res)=>{
 })
 io.on("connection",(s)=>{
     console.log("connected")
+
+    s.on('sendMessage', (message) => {
+        console.log('Message received from client:', message.text);
+        // You can now handle the message, for example, broadcast it to other clients:
+        io.emit('alert', { text: message.text });
+      });
     s.on("disconnect",()=>{
         console.log("disconnected")
     })
