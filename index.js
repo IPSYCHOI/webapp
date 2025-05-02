@@ -18,6 +18,7 @@ app.post("/send",(req,res)=>{
     const text = req.body.text
     io.emit("alert",{text})
     res.send("message sent")
+    console.log("test")
 })
 io.on("connection",(s)=>{
     console.log("connected")
